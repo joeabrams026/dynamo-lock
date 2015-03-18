@@ -1,1 +1,4 @@
-A simple library for using a Dyn    amoDB based shared lock
+A simple library for using a DynamoDB based shared lock
+
+https://travis-ci.org/joeabrams026/dynamo-lock.svg?branch=master
+
