@@ -13,5 +13,9 @@
   },
   "devDependencies": {
     "mocha": "^2.2.1"
+  },
+  "repository" : {
+    "type" : "git"
+  , "url" : "https://github.com/joeabrams026/dynamo-lock.git"
   }
 }
