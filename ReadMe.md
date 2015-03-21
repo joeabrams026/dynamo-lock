@@ -5,6 +5,25 @@ A simple library for using a DynamoDB based shared lock
 [![Build Status](https://travis-ci.org/joeabrams026/dynamo-lock.svg?branch=master)](https://travis-ci.org/joeabrams026/dynamo-lock)
 
 ## Example Usage
+
+#### Setting up your lock table
+First, you need to create a table in DynamoDb to hold your locks
+```javascript
+var dynamoLock = require('dynamo-lock'),
+    options = {},
+    lockTableName = 'Lock',
+    lockClient = dynamoLock.createClient(lockTableName, options);
+
+lockClient.createLockTable(function (err) {
+    if (err) {
+        console.log('Could not create lock table because ' + err);
+    } else {
+        console.log('Created lock table');
+    }
+});
+```
+
+#### Getting a lock
 ```javascript
 var dynamoLock = require('dynamo-lock'),
     options = {},
@@ -18,6 +37,7 @@ lockClient.getLock('testLock', lockTimeoutInMillis, function (err) {
     } else {
         console.log('Got lock!');
     }
+});
 ```
 
 ## API
@@ -57,8 +77,8 @@ Gets the lock specified in lockName, holding it for lockTimeoutInMillis, and exe
 
 *callback (err)* (required) - function called after the lock is (un)successfully aquired.  Lock was successfully acquired if err is falsey.  If err is truthy, lock could not be acquired.
 
-### client.createTable (callback)
+### client.createLockTable (callback)
 Creates the lock table
 
-### client.deleteTable (callback)
+### client.deleteLockTable (callback)
 Deletes the lock table
