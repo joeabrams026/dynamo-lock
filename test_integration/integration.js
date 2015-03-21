@@ -24,7 +24,7 @@ describe('wait for 20 sec', function () {
     });
 });
 
-describe('Test getting lock', function () {
+describe('test lock acquisition', function () {
     this.timeout(60000);
 
     // helper function to wait n millis before getting the lock

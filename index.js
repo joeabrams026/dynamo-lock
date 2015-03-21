@@ -195,7 +195,7 @@ LockerClient.prototype.deleteLockTable = function (cb) {
     var params = {
         TableName: this.lockTableName
     };
-    this.db.deleteLockTable(params, function(err) {
+    this.db.deleteTable(params, function(err) {
         if (err) {
             logger.error(err);
             cb('ERROR');
