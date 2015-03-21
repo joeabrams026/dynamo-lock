@@ -56,3 +56,9 @@ Gets the lock specified in lockName, holding it for lockTimeoutInMillis, and exe
 *lockTimeoutInMillis* (required) - the amount of time a lock stays locked for
 
 *callback (err)* (required) - function called after the lock is (un)successfully aquired.  Lock was successfully acquired if err is falsey.  If err is truthy, lock could not be acquired.
+
+### client.createTable (callback)
+Creates the lock table
+
+### client.deleteTable (callback)
+Deletes the lock table

@@ -1,6 +1,6 @@
 {
   "name": "dynamo-lock",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A module for using a shared lock backed by DynamoDb",
   "main": "index.js",
   "scripts": {

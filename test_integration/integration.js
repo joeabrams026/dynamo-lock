@@ -1,17 +1,31 @@
 /**
- * Created by joeabrams on 3/18/15.
- */
-
-/**
  * Created by joeabrams on 3/15/15.
  */
 var assert = require("assert"),
-    locker = require('../index.js');
+    locker = require('../index.js'),
+    lockClient = locker.createClient('MyLock', {});
 
+
+describe('create lock table', function () {
+    this.timeout(60000);
+    it ('should create the lock table', function (done) {
+        lockClient.createLockTable(function (err) {
+            console.log(err);
+            assert((!err) || (err === 'TABLE_EXISTS'));
+            done();
+        });
+    });
+});
+
+describe('wait for 20 sec', function () {
+    this.timeout(60000);
+    it ('wait for 20 sec', function (done) {
+        setTimeout(done, 20000);
+    });
+});
 
 describe('Test getting lock', function () {
-    var lockClient = locker.createClient('Lock', {});
-    this.timeout(20000);
+    this.timeout(60000);
 
     // helper function to wait n millis before getting the lock
     function getLockAfter(n, cb) {
@@ -51,4 +65,15 @@ describe('Test getting lock', function () {
     });
 });
 
+describe('delete lock table', function () {
+    this.timeout(60000);
 
+    it ('should delete the lock table', function (done) {
+        setTimeout(function() {
+            lockClient.deleteLockTable(function (err) {
+                assert(!err);
+                done();
+            });
+        },30000);
+    });
+});
