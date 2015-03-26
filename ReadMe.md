@@ -75,10 +75,14 @@ Gets the lock specified in lockName, holding it for lockTimeoutInMillis, and exe
 
 *lockTimeoutInMillis* (required) - the amount of time a lock stays locked for
 
-*callback (err)* (required) - function called after the lock is (un)successfully aquired.  Lock was successfully acquired if err is falsey.  If err is truthy, lock could not be acquired.
+*callback (err, success)* (required) - function called after the lock is (un)successfully aquired.  Lock was successfully acquired if err is falsey.  If err is truthy, lock could not be acquired.  If successful, success will be set to 'SUCCESS'.
 
 ### client.createLockTable (callback)
-Creates the lock table
+Creates the lock table whose name was specified in creation of the client.  You need to create this table before you can start using shared locks.  The table will be created with 1 read throughput and 1 write throughput, by default.  You can adjust this from the AWS console/API.
+
+*callback (err, success)* required - function called on error/success creating table.  err has possible values of 'ERROR' and 'TABLE_EXISTS'.  success has value 'SUCCESS'
 
 ### client.deleteLockTable (callback)
-Deletes the lock table
+Deletes the lock table (be careful)
+
+*callback (err, success)* required - function called on error/success creating table.  err has value of 'ERROR'.  success has value 'SUCCESS'.
